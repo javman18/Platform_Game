@@ -64,6 +64,8 @@ class PlayScene (Scene):
         for bullet in self.bullets:
             if bullet.x < self.app.width and bullet.x>0:
                 bullet.x += bullet.vel
+            else:
+                self.bullets.pop(self.bullets.index(bullet))
         #if self.player.isGrounded:
             #print ('grounded')
 
