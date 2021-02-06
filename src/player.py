@@ -14,13 +14,25 @@ class Player(pygame.sprite.Sprite):
         self.isJump = False
         self.jumpCount = 10
         self.isGrounded = False
-        self.isFalling = True  
+        self.isFalling = True 
+        self.idle = True
+        self.left = False
+        self.right = False 
         #player_img = pygame.image.load('tile046.png')      
         
     def move(self):
         self.rect.x += self.speed_x
         self.rect.y += self.speed_y
         print(self.speed_y)
+        if self.speed_x < 0:
+            print("left")
+            self.left = True
+        elif self.speed_x > 0:
+            print("right")
+            self.right=True
+        elif self.speed_x == 0:
+            print ("idle")
+            self.idle = True
         if self.rect.x > 800 - self.radius:
             self.rect.x = 800 - self.radius
         elif self.rect.x < self.radius:
