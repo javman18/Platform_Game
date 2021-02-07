@@ -11,10 +11,10 @@ class PlayScene (Scene):
         self.screen = app.screen
         super().__init__('PlayScene')
         
-        self.player = Player(pygame.Rect(self.app.width/2, 0, 30, 30))
+        self.player = Player(pygame.Rect(50, 0, 30, 30))
         self.platform = Platform(pygame.Rect(0, 0,150, 30), (255,100,0))        
-        self.plat_list = [Platform(pygame.Rect(300, 450, 150, 30), (100,255,0)), Platform(pygame.Rect(400, 300, 150, 30), (255, 100, 0)), 
-        Platform(pygame.Rect(200, 200, 150, 30), (100,255,0))]
+        self.plat_list = [Platform(pygame.Rect(0, 200, 150, 30), (100,255,0)), Platform(pygame.Rect(200, 500, 150, 30), (255, 100, 0)), 
+        Platform(pygame.Rect(450, 200, 150, 30), (100,255,0))]
         self.plat_count = 3
         self.bullets = []
         self.facing = 0
@@ -49,8 +49,11 @@ class PlayScene (Scene):
                     facing = 1
 
                 if len(self.bullets) < 50:
-                    self.bullets.append(Bullet(round(self.player.rect.x + self.player.radius), round(self.player.rect.y), 6, (0,0,0), facing)
-)
+                    self.bullets.append(Bullet(round(self.player.rect.x), round(self.player.rect.y), 6, (0,0,0), facing))
+            elif event.key == pygame.K_l:
+                self.player.rect.x=50
+                self.player.rect.y=0
+                
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT:
                 self.player.speed_x = 0
