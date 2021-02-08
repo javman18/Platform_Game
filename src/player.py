@@ -94,7 +94,7 @@ class Player(pygame.sprite.Sprite):
             and self.rect.y + self.radius >= platform.rect.y -5 and self.rect.y + self.radius <= platform.rect.y + 30):
                 
                 if platform._type == 2:
-                    self.speed_y -= 12
+                    self.speed_y -= 13
                 elif platform._type == 1:
                     self.rect.y = platform.rect.y - self.radius
                     self.speed_y = 0

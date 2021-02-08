@@ -20,7 +20,7 @@ class PlayScene (Scene):
         self.facing = 0
         
     def start(self):
-        self.platform.add_platform(self.plat_list)
+        
         print('se inicia: ', self.name)
     
     
@@ -48,8 +48,8 @@ class PlayScene (Scene):
                 else:
                     facing = 1
 
-                if len(self.bullets) < 50:
-                    self.bullets.append(Bullet(round(self.player.rect.x), round(self.player.rect.y), 6, (0,0,0), facing))
+                
+                self.bullets.append(Bullet(round(self.player.rect.x), round(self.player.rect.y), 6, (0,0,0), facing))
             elif event.key == pygame.K_l:
                 self.player.rect.x=50
                 self.player.rect.y=0
@@ -73,15 +73,7 @@ class PlayScene (Scene):
             #print ('grounded')
 
         self.player.collision(self.plat_list)
-        #self.player.jump()
-        #for platform in self.plat_list:
-#
-        #    if self.player.collision(platform):
-        #        self.player.rect.y = self.platform.rect.y - self.player.radius
-        #        self.player.speed_y = 0
-        #        self.player.isFalling = False
-        #    else:
-        #        self.player.isFalling = True
+
     
     def draw(self):
         self.screen.fill((255,255,255))
