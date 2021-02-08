@@ -92,10 +92,12 @@ class Player(pygame.sprite.Sprite):
             #colisiones de arriba
             if (self.rect.x + self.radius  >= platform.rect.x and self.rect.x - self.radius <= platform.rect.x + platform.rect.width 
             and self.rect.y + self.radius >= platform.rect.y -5 and self.rect.y + self.radius <= platform.rect.y + 30):
-                self.speed_y -= 12
                 
-                #self.rect.y = platform.rect.y - self.radius
-                #self.speed_y = 0
+                if platform._type == 2:
+                    self.speed_y -= 12
+                elif platform._type == 1:
+                    self.rect.y = platform.rect.y - self.radius
+                    self.speed_y = 0
                 
                 self.isGrounded = True
                 self.isFalling=False

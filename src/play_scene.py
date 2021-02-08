@@ -12,9 +12,9 @@ class PlayScene (Scene):
         super().__init__('PlayScene')
         
         self.player = Player(pygame.Rect(50, 0, 30, 30))
-        self.platform = Platform(pygame.Rect(0, 0,150, 30), (255,100,0))        
-        self.plat_list = [Platform(pygame.Rect(0, 200, 150, 30), (100,255,0)), Platform(pygame.Rect(200, 500, 150, 30), (255, 100, 0)), 
-        Platform(pygame.Rect(450, 200, 150, 30), (100,255,0))]
+        self.platform = Platform(pygame.Rect(0, 0,150, 30), (255,100,0), 2)        
+        self.plat_list = [Platform(pygame.Rect(0, 200, 150, 30), (100,255,0), 1), Platform(pygame.Rect(200, 500, 150, 30), (255, 100, 0), 2), 
+        Platform(pygame.Rect(450, 200, 150, 30), (100,255,0), 1), Platform(pygame.Rect(600, 350, 150, 30), (255, 100, 0), 2)]
         self.plat_count = 3
         self.bullets = []
         self.facing = 0
