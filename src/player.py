@@ -6,6 +6,7 @@ import random
 class Player(pygame.sprite.Sprite):
     def __init__(self,rect):  #(self, rect):
         pygame.sprite.Sprite.__init__(self)
+        
         self.rect = rect
          
         self.speed_x = 0
@@ -18,12 +19,16 @@ class Player(pygame.sprite.Sprite):
         self.idle = True
         self.left = False
         self.right = False 
+
+        
+        self.counter = 100 #3 segundos
+        pygame.time.set_timer(pygame.USEREVENT, 500)
         #player_img = pygame.image.load('tile046.png')      
         
     def move(self):
         self.rect.x += self.speed_x
         self.rect.y += self.speed_y
-        print(self.speed_y)
+        #print(self.speed_y)
         if self.speed_x < 0:
             
             self.left = True
@@ -33,8 +38,8 @@ class Player(pygame.sprite.Sprite):
         elif self.speed_x == 0:
             
             self.idle = True
-        if self.rect.x > 800 - self.radius:
-            self.rect.x = 800 - self.radius
+        if self.rect.x > 1200 - self.radius:
+            self.rect.x = 1200 - self.radius
         elif self.rect.x < self.radius:
             self.rect.x = self.radius
         
@@ -63,10 +68,10 @@ class Player(pygame.sprite.Sprite):
         if self.speed_y==0:
             self.isFalling=False
 
-        if self.rect.y >= 600 - self.radius - 50 and self.speed_y>=0:
+        if self.rect.y >= 800 - self.radius - 50 and self.speed_y>=0:
             
             self.speed_y = 0
-            self.rect.y = 600 - self.radius - 50
+            self.rect.y = 800 - self.radius - 50
             self.isGrounded = True
             self.isFalling = False        
 
@@ -82,8 +87,12 @@ class Player(pygame.sprite.Sprite):
 
     def collision(self, plats):
         #return (pygame.Rect(self.rect.x, self.rect.y + self.radius, self.radius, self.radius).colliderect(platform.rect))
+        
+        
+        
+        
         for platform in plats:
-
+            
             #colisiones de abajo
             if(self.rect.x + self.radius  > platform.rect.x and self.rect.x < platform.rect.x + platform.rect.width
             and self.rect.y < platform.rect.y + platform.rect.height + self.radius and self.rect.y > platform.rect.y+30):
@@ -94,11 +103,18 @@ class Player(pygame.sprite.Sprite):
             and self.rect.y + self.radius >= platform.rect.y -5 and self.rect.y + self.radius <= platform.rect.y + 30):
                 
                 if platform._type == 2:
-                    self.speed_y -= 13
+                    self.speed_y -= 13.5
                 elif platform._type == 1:
                     self.rect.y = platform.rect.y - self.radius
                     self.speed_y = 0
-                
+                elif platform._type == 3:
+                    self.rect.y = platform.rect.y - self.radius
+                    self.speed_y = 0
+                    self.counter -= 1
+                    print(self.counter)
+                    if self.counter==0:
+                        plats.remove(platform)
+                        
                 self.isGrounded = True
                 self.isFalling=False
             else:

@@ -18,9 +18,9 @@ class Ball:
         self.x += self.speed_x
         self.y += self.speed_y
         #colisiones
-        if self.y > 600 - self.radius or self.y < self.radius:
+        if self.y > 800 - self.radius or self.y < self.radius:
             self.speed_y *= -1
-        if self.x > 800 - self.radius or self.x < self.radius :
+        if self.x > 1200 - self.radius or self.x < self.radius :
             self.speed_x *= -1
     #agrega el constructor de la pelota 50 veces
     def add_balls(self, balls):

@@ -11,10 +11,11 @@ class PlayScene (Scene):
         self.screen = app.screen
         super().__init__('PlayScene')
         
-        self.player = Player(pygame.Rect(50, 0, 30, 30))
+        self.player = Player(pygame.Rect(50, 400, 30, 30))
         self.platform = Platform(pygame.Rect(0, 0,150, 30), (255,100,0), 2)        
-        self.plat_list = [Platform(pygame.Rect(0, 200, 150, 30), (100,255,0), 1), Platform(pygame.Rect(200, 500, 150, 30), (255, 100, 0), 2), 
-        Platform(pygame.Rect(450, 200, 150, 30), (100,255,0), 1), Platform(pygame.Rect(600, 350, 150, 30), (255, 100, 0), 2)]
+        self.plat_list = [Platform(pygame.Rect(0, 500, 150, 30), (100,255,0), 1), Platform(pygame.Rect(200, 700, 150, 30), (255, 100, 0), 2), 
+        Platform(pygame.Rect(0, 200, 100, 30), (100,255,0), 1), Platform(pygame.Rect(400, 500, 100, 30), (100,255,0), 1),
+        Platform(pygame.Rect(600, 350, 150, 30), (255, 100, 0), 2), Platform(pygame.Rect(200, 400, 100, 30), (0, 0, 255), 3)]
         self.plat_count = 3
         self.bullets = []
         self.facing = 0
@@ -77,7 +78,7 @@ class PlayScene (Scene):
     
     def draw(self):
         self.screen.fill((255,255,255))
-        pygame.draw.rect(self.screen, (0, 255, 0), (0,550,self.app.width,50))
+        pygame.draw.rect(self.screen, (0, 255, 0), (0,750,self.app.width,50))
         self.player.draw_player(self.screen)
         self.platform.draw_rect(self.screen, self.plat_list)
         for bullet in self.bullets:
